@@ -1,0 +1,20 @@
+.result-page {
+  max-width: 600px;
+  margin: 60px auto;
+  padding: 25px;
+  background-color: #e9ecef;
+  border-radius: 12px;
+  text-align: center;
+}
+
+.result-page h2 {
+  margin-bottom: 20px;
+  font-size: 24px;
+  color: #343a40;
+}
+
+.result-page p {
+  font-size: 18px;
+  color: #495057;
+  margin: 10px 0;
+}

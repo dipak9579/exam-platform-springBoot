@@ -1,0 +1,10 @@
+.dashboard {
+  padding: 20px;
+}
+
+.exam-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}

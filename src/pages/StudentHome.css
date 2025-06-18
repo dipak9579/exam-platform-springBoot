@@ -1,0 +1,11 @@
+.student-home {
+  padding: 20px;
+  background-color: #f2f2f2;
+  min-height: 100vh;
+  text-align: center;
+}
+
+.student-home h1 {
+  margin-bottom: 30px;
+  color: #2c3e50;
+}

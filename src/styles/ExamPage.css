@@ -1,0 +1,128 @@
+/* ExamPage.css */
+
+
+
+.exam-wrapper {
+  display: flex;
+  flex-direction: row;
+  min-height: 100vh;
+  background-color: #ffffff;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.exam-main {
+  flex: 3;
+  padding: 20px;
+  border-right: 2px solid #f0f0f0;
+}
+
+.question-box {
+  background-color: #fafafa;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+  margin-bottom: 30px;
+}
+
+.question-box h2 {
+  font-size: 1.3rem;
+  margin-bottom: 20px;
+}
+
+.option {
+  display: flex;
+  align-items: center;
+  margin: 10px 0;
+}
+
+.option input[type="radio"] {
+  margin-right: 12px;
+}
+
+.option label {
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.btn-group {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.btn-group button {
+  padding: 10px 20px;
+  background-color: #2563eb;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background-color 0.3s ease;
+}
+
+.btn-group button:disabled {
+  background-color: #cbd5e1;
+  cursor: not-allowed;
+}
+
+.btn-group button:hover:not(:disabled) {
+  background-color: #1d4ed8;
+}
+
+/* Right Panel */
+
+.question-nav {
+  flex: 1;
+  padding: 20px;
+  background-color: #f9fafb;
+  border-left: 2px solid #f0f0f0;
+  border-radius: 0 8px 8px 0;
+}
+
+.question-nav h3 {
+  font-size: 1.2rem;
+  margin-bottom: 15px;
+}
+
+.question-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+
+.q-btn {
+  position: relative;
+  padding: 10px 0;
+  background-color: #e5e7eb;
+  border: none;
+  border-radius: 50%;
+  width: 45px;
+  height: 45px;
+  font-weight: bold;
+  color: #111827;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.q-btn.answered::after {
+  content: "";
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  width: 10px;
+  height: 10px;
+  background-color: #10b981;
+  border-radius: 50%;
+  border: 2px solid white;
+}
+
+.q-btn.active {
+  background-color: #3b82f6;
+  color: white;
+}
+
+.q-btn:hover {
+  background-color: #93c5fd;
+}
