@@ -7,7 +7,9 @@ import com.examPlatform.Repository.ExamRepository;
 import com.examPlatform.Repository.StudentExamSubmissionRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,6 +23,16 @@ public class ExamSubmissionService {
     private final StudentExamSubmissionRepository submissionRepository;
     @Transactional
     public StudentExamSubmission submitExam(ExamSubmissionDTO submissionDTO) {
+        // Check if student already submitted
+        Optional<StudentExamSubmission> existingSubmission =
+                submissionRepository.findTopByStudentEmailAndExamIdOrderByIdDesc(
+                        submissionDTO.getStudentEmail(), submissionDTO.getExamId());
+
+        if (existingSubmission.isPresent()) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "You have already submitted this exam.");
+        }
+
+
         Exam exam = examRepository.findById(submissionDTO.getExamId()).orElseThrow();
 
         int totalMarks = 0;
@@ -74,19 +86,25 @@ public class ExamSubmissionService {
         return submissionRepository.save(submission);
     }
 
+    public boolean hasStudentSubmittedExam(String email, Long examId) {
+        return submissionRepository
+                .findTopByStudentEmailAndExamIdOrderByIdDesc(email, examId)
+                .isPresent();
+    }
+
+
     public ExamResultDTO getResultByStudentAndExam(String email, Long examId) {
         StudentExamSubmission submission = submissionRepository
                 .findTopByStudentEmailAndExamIdOrderByIdDesc(email, examId)
-                .orElseThrow(() -> new RuntimeException("Result not found"));
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Result not found"));
 
         ExamResultDTO dto = new ExamResultDTO();
         dto.setStudentEmail(submission.getStudentEmail());
         dto.setExamId(submission.getExam().getId());
-        dto.setTotalMarks(submission.getTotalMarks()); // You must have this field in your Entity
+        dto.setTotalMarks(submission.getTotalMarks());
 
         return dto;
     }
-
 
 
 

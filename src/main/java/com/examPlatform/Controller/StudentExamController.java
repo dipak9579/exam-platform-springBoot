@@ -56,6 +56,16 @@ public class StudentExamController {
         return ResponseEntity.ok(response);
     }
 
+    @GetMapping("/exam/submitted/{email}/{examId}")
+    public ResponseEntity<Boolean> hasSubmitted(
+            @PathVariable String email,
+            @PathVariable Long examId) {
+        boolean submitted = submissionService
+                .hasStudentSubmittedExam(email, examId);
+        return ResponseEntity.ok(submitted);
+    }
+
+
 
     @GetMapping("/exam/result/{email}/{examId}")
     public ResponseEntity<ExamResultDTO> getResult(
