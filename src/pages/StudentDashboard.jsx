@@ -7,7 +7,7 @@ import Navbar from "../components/Navbar"
 import StudentHome from './StudentHome';
 import AllExamsPage from './AllExamsPage';
 import ResultPage from './ResultPage';
-// import LeaderboardPage from './LeaderboardPage';
+import Leaderboard from './Leaderboard';
 // import AnalyticsPage from './AnalyticsPage';
 // import SubmitPage from './Submit';
 import '../styles/Dashboard.css';
@@ -27,7 +27,7 @@ const StudentDashboard = () => {
           <Route path="home" element={<StudentHome />} />
           <Route path="exams" element={<AllExamsPage />} />
           <Route path="results" element={<ResultPage />} />
-          {/* <Route path="leaderboard" element={<LeaderboardPage />} /> */}
+          <Route path="leaderboard" element={<Leaderboard />} />
           {/* <Route path="analytics" element={<AnalyticsPage />} /> */}
       
         </Routes>

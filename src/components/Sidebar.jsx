@@ -16,7 +16,7 @@ const Sidebar = () => {
       <button onClick={() => navigate('/student/dashboard/home')}>Dashboard</button>
      <button onClick={() => navigate('/student/dashboard/exams')}>Exams</button>
       <button onClick={() => navigate('/student/dashboard/results')}>Results</button>
-      {/* <button onClick={() => navigate('/student/leaderboard')}>Leaderboard</button> */}
+      <button onClick={() => navigate('/student/dashboard/leaderboard')}>Leaderboard</button>
       {/* <button onClick={() => navigate('/student/analytics')}>Analytics</button> */}
       <button onClick={logout}>Logout</button>
     </div>

@@ -1,0 +1,33 @@
+.leaderboard-container {
+  padding: 1rem;
+  font-family: Arial, sans-serif;
+}
+
+.leaderboard-title {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.leaderboard-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+
+.leaderboard-table th,
+.leaderboard-table td {
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+  text-align: center;
+}
+
+.leaderboard-table th {
+  background-color: #f2f2f2;
+}
+
+.leaderboard-empty {
+  text-align: center;
+  margin-top: 1rem;
+  font-style: italic;
+}
