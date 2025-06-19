@@ -106,6 +106,20 @@ public class ExamSubmissionService {
         return dto;
     }
 
+    public List<ExamResultDTO> getResultsByEmail(String email) {
+        List<StudentExamSubmission> submissions = submissionRepository.findByStudentEmail(email);
+
+        return submissions.stream().map(submission -> {
+            ExamResultDTO dto = new ExamResultDTO();
+            dto.setStudentEmail(submission.getStudentEmail());
+            dto.setExamId(submission.getExam().getId());
+            dto.setTotalMarks(submission.getTotalMarks());
+            dto.setExamTitle(submission.getExam().getTitle());
+            dto.setSubmittedAt(submission.getSubmittedAt()); // ✅ Use the correct field
+            return dto;
+        }).toList();
+    }
+
 
 
 

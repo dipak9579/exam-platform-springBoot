@@ -7,6 +7,7 @@ import com.examPlatform.DTO.RegisterRequest;
 import com.examPlatform.Model.Users;
 import com.examPlatform.Repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -14,6 +15,7 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.Collections;
 
@@ -28,7 +30,7 @@ public class AuthService {
 
     public AuthResponse register(RegisterRequest request) {
         if (userRepository.findByEmail(request.getEmail()).isPresent()) {
-            throw new RuntimeException("Email is already registered");
+            throw new ResponseStatusException(HttpStatus.CONFLICT, "Email is already registered");
         }
 
         Users user = Users.builder()
@@ -40,10 +42,8 @@ public class AuthService {
 
         userRepository.save(user);
 
-        // Return a success message instead of a token
         return new AuthResponse("User registered successfully");
     }
-
     public AuthResponse login(AuthRequest request) {
         authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(request.getEmail(), request.getPassword())

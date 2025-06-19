@@ -76,6 +76,11 @@ public class StudentExamController {
         return ResponseEntity.ok(result);
     }
 
+    @GetMapping("/exam/results/{email}")
+    public ResponseEntity<List<ExamResultDTO>> getAllResultsForStudent(@PathVariable String email) {
+        List<ExamResultDTO> results = submissionService.getResultsByEmail(email);
+        return ResponseEntity.ok(results);
+    }
 
 
 
