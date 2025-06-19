@@ -1,0 +1,9 @@
+.all-exams-page {
+  padding: 20px;
+}
+
+.exam-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}

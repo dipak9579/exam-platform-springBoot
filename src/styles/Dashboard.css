@@ -1,0 +1,25 @@
+.dashboard-container {
+  display: grid;
+  grid-template-columns: 1.2fr 4fr 1fr; /* Sidebar | Main | Profile */
+  grid-template-rows: auto;
+  min-height: 100vh;
+  background-color: #f5f7fa;
+  padding: 0px;
+  gap: 20px;
+}
+
+.sidebar-section {
+  grid-column: 1 / 2; /* Sidebar on the left */
+}
+
+.main-content {
+  grid-column: 2 / 3;
+  background: #fff;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.05);
+}
+
+.profile-section {
+  grid-column: 3 / 4; /* Profile on the right */
+}

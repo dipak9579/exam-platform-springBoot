@@ -1,0 +1,66 @@
+/* Home.css */
+
+.home-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 50px;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #1e1e2f, #2a2a40);
+  color: white;
+}
+
+.home-content {
+  max-width: 50%;
+}
+
+.home-content h1 {
+  font-size: 2.8rem;
+  margin-bottom: 20px;
+  color: #fff;
+}
+
+.home-content p {
+  font-size: 1.2rem;
+  margin-bottom: 30px;
+  color: #ccc;
+}
+
+.home-buttons {
+  display: flex;
+  gap: 15px;
+}
+
+.home-btn {
+  padding: 12px 25px;
+  border: none;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+  color: white;
+}
+
+.login-btn {
+  background-color: #00bfff;
+}
+
+.login-btn:hover {
+  background-color: #009acd;
+}
+
+.register-btn {
+  background-color: #32cd32;
+}
+
+.register-btn:hover {
+  background-color: #2eb82e;
+}
+
+.home-image img {
+  max-width: 400px;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0, 191, 255, 0.2);
+}

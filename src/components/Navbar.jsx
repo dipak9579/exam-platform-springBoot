@@ -1,15 +1,17 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-
+import React, { useContext } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { AuthContext } from '../context/AuthContext'; // adjust the path if needed
+import "./Navbar.css"
 
 const Navbar = () => {
+ 
+
   return (
     <nav className="navbar">
-      <h2 className="logo">Online Exam</h2>
+      <h2 className="logo">Exam Port</h2>
       <div className="nav-links">
-        <Link to="/">Home</Link>
-        <Link to="/login">Login</Link>
-        <Link to="/register">Register</Link>
+        <Link to="/">Back To Home</Link>
+       
       </div>
     </nav>
   );
