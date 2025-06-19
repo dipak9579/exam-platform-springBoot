@@ -28,7 +28,7 @@ const ExamPage = () => {
       .then(res => {
         if (res.data === true) {
           alert("You have already submitted this exam.");
-          navigate('/');
+          navigate('/student/dashboard');
         } else {
           setCanAttempt(true); // Allow tab monitoring
         }

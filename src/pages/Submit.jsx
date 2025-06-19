@@ -67,7 +67,7 @@ const SubmitPage = () => {
 
       const result = await res.json();
       localStorage.setItem('result', JSON.stringify(result));
-      navigate('/result');
+      navigate('/submitted');
     } catch (error) {
       console.error("Submission failed:", error);
       alert("Exam submission failed. Please try again.");

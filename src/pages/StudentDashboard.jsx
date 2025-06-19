@@ -6,11 +6,12 @@ import ProfileCard from '../components/ProfileCard';
 import Navbar from "../components/Navbar"
 import StudentHome from './StudentHome';
 import AllExamsPage from './AllExamsPage';
-// import ResultPage from './ResultPage';
+import ResultPage from './ResultPage';
 // import LeaderboardPage from './LeaderboardPage';
 // import AnalyticsPage from './AnalyticsPage';
 // import SubmitPage from './Submit';
 import '../styles/Dashboard.css';
+import MainContent from './MainContent';
 
 const StudentDashboard = () => {
   return (
@@ -21,13 +22,14 @@ const StudentDashboard = () => {
         <Sidebar />
       </div>
       <div className="main-content">
+        {/* <MainContent/> */}
         <Routes>
           <Route path="home" element={<StudentHome />} />
           <Route path="exams" element={<AllExamsPage />} />
-          {/* <Route path="results" element={<ResultPage />} /> */}
+          <Route path="results" element={<ResultPage />} />
           {/* <Route path="leaderboard" element={<LeaderboardPage />} /> */}
           {/* <Route path="analytics" element={<AnalyticsPage />} /> */}
-          {/* <Route path="submit" element={<SubmitPage />} /> */}
+      
         </Routes>
       </div>
       <div className="profile-section">

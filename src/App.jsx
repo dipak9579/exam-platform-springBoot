@@ -6,6 +6,9 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import StudentDashboard from './pages/StudentDashboard';
 import PrivateRoute from './components/PrivateRoute';
+import ExamSubmitted from './pages/ExamSubmitted';
+import ExamPage from "./pages/ExamPage"
+import SubmitPage from './pages/Submit';
 
 const App = () => {
   return (
@@ -14,7 +17,7 @@ const App = () => {
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
-        
+
         {/* Main dashboard layout route */}
         <Route
           path="/student/dashboard/*"
@@ -24,6 +27,35 @@ const App = () => {
             </PrivateRoute>
           }
         />
+
+        <Route
+          path="/submitted"
+          element={
+            <PrivateRoute>
+              <ExamSubmitted />
+            </PrivateRoute>
+          }
+        />
+
+        <Route
+          path="/exam/:examId"
+          element={
+            <PrivateRoute>
+              <ExamPage />
+            </PrivateRoute>
+          }
+        />
+
+        
+        <Route
+          path="/submit"
+          element={
+            <PrivateRoute>
+              <SubmitPage/>
+            </PrivateRoute>
+          }
+        />
+
       </Routes>
     </Router>
   );

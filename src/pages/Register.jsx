@@ -1,5 +1,3 @@
-// src/pages/Register.jsx
-
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
@@ -13,19 +11,27 @@ const Register = () => {
   const navigate = useNavigate();
 
   const handleRegister = async (e) => {
-    e.preventDefault();
-    try {
-      await axios.post('http://localhost:8080/api/auth/register', {
-        name: fullName,
-        email,
-        password
-      });
+  e.preventDefault();
+  setError('');
 
-      navigate('/login');
-    } catch (err) {
-      setError('Registration failed. Try a different email.');
-    }
-  };
+  try {
+    await axios.post('http://localhost:8080/api/auth/register', {
+      name: fullName,
+      email,
+      password
+    });
+
+    navigate('/login');
+  } catch (err) {
+   if (err.response && err.response.status === 409) {
+  setError("Email is already registered");
+} else {
+  setError("Registration failed. Please try again.");
+}
+
+  }
+};
+
 
   return (
     <div className="page">
