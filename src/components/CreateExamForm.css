@@ -1,0 +1,35 @@
+.exam-form {
+  background: #f4f4f4;
+  padding: 25px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px #ccc;
+}
+
+.exam-form label {
+  display: block;
+  margin-bottom: 15px;
+  text-align: left;
+  font-weight: bold;
+}
+
+.exam-form input {
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.exam-form button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.exam-form button:hover {
+  background: #0056b3;
+}
