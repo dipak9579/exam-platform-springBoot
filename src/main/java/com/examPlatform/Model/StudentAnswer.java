@@ -9,14 +9,19 @@ import lombok.*;
 @AllArgsConstructor
 @Builder
 public class StudentAnswer {
+
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private Long questionId;
-    private String givenAnswer;
-    private int marksAwarded;
+    private String givenAnswer;   // Student's submitted answer
+    private int marksAwarded;     // Marks awarded for this answer
 
     @ManyToOne
+    @JoinColumn(name = "submission_id")
     private StudentExamSubmission submission;
+
+    @ManyToOne
+    @JoinColumn(name = "question_id")
+    private Question question;    // Link to the actual question
 }

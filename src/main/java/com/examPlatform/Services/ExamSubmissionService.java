@@ -2,6 +2,7 @@ package com.examPlatform.Services;
 
 import com.examPlatform.DTO.ExamResultDTO;
 import com.examPlatform.DTO.ExamSubmissionDTO;
+import com.examPlatform.DTO.StudentExamAnalyticsDTO;
 import com.examPlatform.Model.*;
 import com.examPlatform.Repository.ExamRepository;
 import com.examPlatform.Repository.StudentExamSubmissionRepository;
@@ -11,9 +12,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 @RequiredArgsConstructor
@@ -62,10 +61,11 @@ public class ExamSubmissionService {
             totalMarks += awardedMarks;
 
             StudentAnswer studentAnswer = StudentAnswer.builder()
-                    .questionId(question.getId())
+                    .question(question) // ✅ pass the entire Question object here
                     .givenAnswer(answerDTO.getGivenAnswer())
                     .marksAwarded(awardedMarks)
                     .build();
+
 
             answers.add(studentAnswer);
         }
@@ -119,6 +119,47 @@ public class ExamSubmissionService {
             return dto;
         }).toList();
     }
+
+    public Map<String, Object> getStudentAnalytics(String studentEmail) {
+        List<StudentExamSubmission> submissions = submissionRepository.findByStudentEmail(studentEmail);
+
+        int totalExams = submissions.size();
+        int totalMarks = 0;
+        int totalCorrectAnswers = 0;
+        int totalQuestions = 0;
+
+        for (StudentExamSubmission submission : submissions) {
+            totalMarks += submission.getTotalMarks();
+            List<StudentAnswer> answers = submission.getAnswers();
+
+            for (StudentAnswer ans : answers) {
+                totalQuestions++;
+                String correctAnswer = switch (ans.getQuestion().getCorrectAnswer().toUpperCase()) {
+                    case "A" -> ans.getQuestion().getOptionA();
+                    case "B" -> ans.getQuestion().getOptionB();
+                    case "C" -> ans.getQuestion().getOptionC();
+                    case "D" -> ans.getQuestion().getOptionD();
+                    default -> "";
+                };
+
+                if (ans.getGivenAnswer().equalsIgnoreCase(correctAnswer)) {
+                    totalCorrectAnswers++;
+                }
+            }
+        }
+
+        double averageMarks = totalExams == 0 ? 0 : (double) totalMarks / totalExams;
+        double accuracy = totalQuestions == 0 ? 0 : ((double) totalCorrectAnswers / totalQuestions) * 100;
+
+        Map<String, Object> analytics = new HashMap<>();
+        analytics.put("totalExams", totalExams);
+        analytics.put("totalMarks", totalMarks);
+        analytics.put("averageMarks", averageMarks);
+        analytics.put("accuracy", accuracy);
+
+        return analytics;
+    }
+
 
 
 

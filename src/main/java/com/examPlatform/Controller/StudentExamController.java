@@ -2,6 +2,7 @@ package com.examPlatform.Controller;
 
 import com.examPlatform.DTO.ExamResultDTO;
 import com.examPlatform.DTO.ExamSubmissionDTO;
+import com.examPlatform.DTO.StudentExamAnalyticsDTO;
 import com.examPlatform.Model.Exam;
 import com.examPlatform.Model.StudentExamSubmission;
 import com.examPlatform.Repository.ExamRepository;
@@ -80,6 +81,12 @@ public class StudentExamController {
     public ResponseEntity<List<ExamResultDTO>> getAllResultsForStudent(@PathVariable String email) {
         List<ExamResultDTO> results = submissionService.getResultsByEmail(email);
         return ResponseEntity.ok(results);
+    }
+
+    @GetMapping("/analytics")
+    public ResponseEntity<Map<String, Object>> getStudentAnalytics(@RequestParam String email) {
+        Map<String, Object> analytics = submissionService.getStudentAnalytics(email);
+        return ResponseEntity.ok(analytics);
     }
 
 
