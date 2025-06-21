@@ -11,6 +11,8 @@ const ExamPage = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [loading, setLoading] = useState(true);
   const [canAttempt, setCanAttempt] = useState(false); // NEW STATE
+  const [durationInMinutes, setDurationInMinutes] = useState(30); // default fallback
+
 
   const navigate = useNavigate();
   const { examId } = useParams();
@@ -41,22 +43,24 @@ const ExamPage = () => {
     const token = localStorage.getItem("token");
 
     axios.get(`http://localhost:8080/api/student/exam/${examId}`, {
-      headers: {
-        Authorization: `Bearer ${token}`
-      }
-    })
-      .then(res => {
-        if (res.data && Array.isArray(res.data.questions)) {
-          setQuestions(res.data.questions);
-        } else {
-          alert("Invalid exam data format.");
-        }
-      })
-      .catch(err => {
-        console.error("Error fetching exam:", err);
-        alert("Access denied or exam not found.");
-      })
-      .finally(() => setLoading(false));
+  headers: {
+    Authorization: `Bearer ${token}`
+  }
+})
+.then(res => {
+  if (res.data && Array.isArray(res.data.questions)) {
+    setQuestions(res.data.questions);
+    setDurationInMinutes(res.data.durationInMinutes|| 30); // <-- set duration here
+  } else {
+    alert("Invalid exam data format.");
+  }
+})
+.catch(err => {
+  console.error("Error fetching exam:", err);
+  alert("Access denied or exam not found.");
+})
+.finally(() => setLoading(false));
+
   }, [examId]);
 
   // Tab switching & other event restrictions
@@ -124,7 +128,8 @@ const ExamPage = () => {
   return (
     <div className="exam-wrapper">
       <div className="exam-main">
-        <Timer minutes={30} onTimeUp={handleSubmit} />
+      <Timer minutes={durationInMinutes} onTimeUp={handleSubmit} />
+
         <div className="question-box">
           <h2>Q{currentIndex + 1}: {currentQ.questionText}</h2>
           {[currentQ.optionA, currentQ.optionB, currentQ.optionC, currentQ.optionD].map((opt, idx) => (
