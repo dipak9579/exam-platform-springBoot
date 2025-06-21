@@ -8,6 +8,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -23,8 +24,8 @@ public class Exam {
     private String title;
     private String description;
     private int durationInMinutes;
-
     @OneToMany(mappedBy = "exam", cascade = CascadeType.ALL)
     @JsonManagedReference
-    private List<Question> questions;
+    private List<Question> questions = new ArrayList<>();
+
 }

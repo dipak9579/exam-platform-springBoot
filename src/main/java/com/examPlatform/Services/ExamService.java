@@ -14,12 +14,19 @@ public class ExamService {
     @Autowired
     private ExamRepository examRepository;
 
+
+
+
+
     public Exam createExam(Exam exam) {
-        for (Question q : exam.getQuestions()) {
-            q.setExam(exam);  // Set the foreign key
+        if (exam.getQuestions() != null) {
+            for (Question q : exam.getQuestions()) {
+                q.setExam(exam);  // Set the foreign key
+            }
         }
         return examRepository.save(exam);
     }
+
 
     public Exam getExamWithQuestions(Long examId) {
         Exam exam = examRepository.findById(examId)

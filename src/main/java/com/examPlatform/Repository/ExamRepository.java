@@ -3,4 +3,7 @@ package com.examPlatform.Repository;
 import com.examPlatform.Model.Exam;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface ExamRepository extends JpaRepository<Exam, Long> {}
+import java.util.List;
+
+public interface ExamRepository extends JpaRepository<Exam, Long> {
+}
