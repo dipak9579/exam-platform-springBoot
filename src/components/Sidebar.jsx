@@ -8,7 +8,7 @@ const Sidebar = () => {
   const logout = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("email");
-    navigate("/login");
+    navigate("/");
   };
 
   return (
@@ -17,7 +17,7 @@ const Sidebar = () => {
      <button onClick={() => navigate('/student/dashboard/exams')}>Exams</button>
       <button onClick={() => navigate('/student/dashboard/results')}>Results</button>
       <button onClick={() => navigate('/student/dashboard/leaderboard')}>Leaderboard</button>
-      {/* <button onClick={() => navigate('/student/analytics')}>Analytics</button> */}
+      <button onClick={() => navigate('/student/dashboard/analytics')}>Analytics</button>
       <button onClick={logout}>Logout</button>
     </div>
   );

@@ -6,7 +6,7 @@ import Navbar from "../components/Navbar";
 import AllExamsPage from './AllExamsPage';
 import ResultPage from './ResultPage';
 import Leaderboard from './Leaderboard';
-// import AnalyticsPage from './AnalyticsPage';
+import AnalyticsPage from './AnalyticsPage';
 import '../styles/Dashboard.css';
 import MainContent from './MainContent';
 
@@ -27,7 +27,7 @@ const StudentDashboard = () => {
             <Route path="exams" element={<AllExamsPage />} />
             <Route path="results" element={<ResultPage />} />
             <Route path="leaderboard" element={<Leaderboard />} />
-            {/* <Route path="analytics" element={<AnalyticsPage />} /> */}
+            <Route path="analytics" element={<AnalyticsPage />} />
           </Routes>
         </div>
 
